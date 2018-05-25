@@ -1,0 +1,16 @@
+{
+  "name": "seba-medicare-backend",
+  "version": "1.0.0",
+  "description": "This project contains the backend services for the medicare web application (mongo db and express app).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://msalazar93@bitbucket.org/ss18sebateam52/seba-medicare-backend.git"
+  },
+  "author": "SEBA TEAM 52",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/ss18sebateam52/seba-medicare-backend#readme"
+}
