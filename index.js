@@ -1,12 +1,11 @@
 "use strict";
 
-const http       = require('http');
 const express    = require('express');
 const bodyParser = require('body-parser');
 const helmet     = require('helmet');
+const mongoose   = require('mongoose');
 const routes     = require('./src/routes/index');
 const config     = require('./src/config');
-const mongoose   = require('mongoose');
 
 
 // Create global app object
