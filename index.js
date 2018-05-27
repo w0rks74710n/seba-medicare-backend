@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const helmet     = require('helmet');
 const routes     = require('./src/routes/index');
 const config     = require('./src/config');
+const mongoose   = require('mongoose');
 
 
 // Create global app object
@@ -24,6 +25,15 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-const server = app.listen( config.port, function(){
-    console.log('Listening on port ' + server.address().port);
-});
+const server = app;
+
+// Connect to MongoDB database before starting the server
+mongoose
+    .connect(config.mongoURI)
+    .then(() => server.listen(config.port, function() {
+        console.log('Listening on port ' + config.port);
+    }))
+    .catch(err => {
+        console.log('Error connecting to the database', err.message);
+        process.exit(err.statusCode);
+    });
