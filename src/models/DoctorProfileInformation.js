@@ -1,11 +1,11 @@
 "use strict";
 
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 // Define the DoctorProfileInformation schema
 
 const DoctorProfileInformationSchema = new mongoose.Schema({
-  doctor_id: ObjectId,
+  doctor_id: mongoose.Schema.ObjectId,
   about: {
     description: String
   },
@@ -31,7 +31,7 @@ const DoctorProfileInformationSchema = new mongoose.Schema({
   education: {
     university: String
   }
-});
+}, { minimize: false });
 
 DoctorProfileInformationSchema.set('versionKey', false);
 
