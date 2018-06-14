@@ -30,6 +30,13 @@ const DoctorProfileInformationSchema = new mongoose.Schema({
   },
   education: {
     university: String
+  },
+  images: {
+    profilePic: String,
+    praxisPic1: String,
+    praxisPic2: String,
+    praxisPic3: String,
+    praxisPic4: String
   }
 }, { minimize: false });
 
