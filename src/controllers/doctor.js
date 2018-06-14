@@ -35,7 +35,7 @@ const create = (req, res) => {
         });
       DoctorProfileInformationModel.create(doctorProfileInformation);
 
-      res.status(200).json({successfullyCreated: 'Model'});
+      res.status(200).json({successfullyCreated: 'Model', doctorId: doctor._id});
 
     })
     .catch(error => {
