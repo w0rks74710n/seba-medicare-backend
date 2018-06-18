@@ -40,6 +40,12 @@ First you need to install docker on your local machine, otherwise the previous c
 
 The database of the project is configured as a separate container running a Mongo image. As an extra abstraction an additional container holding the volume information for the database has been configured in the docker-compose file of the project
 
+To access the database, once the containers are running, execute:
+
+docker exec -it mongo mongo
+
+This will give you access to the database and execute queries
+
 * How to run tests
  TBD
 * Deployment instructions

@@ -3,6 +3,8 @@
 const express  = require('express');
 const router   = express.Router();
 
+router.use('/doctorProfileInformation', require('./doctorProfileInformation'));
+router.use('/doctor', require('./doctor'));
 router.use('/', require('./welcome'));
 
 router.use(function(err, req, res, next){
