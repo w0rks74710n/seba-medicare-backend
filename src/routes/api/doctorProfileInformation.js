@@ -5,6 +5,7 @@ const router   = express.Router();
 
 const DoctorProfileInformationController = require('../../controllers/doctorProfileInformation');
 
-router.put('/:doctor_id', DoctorProfileInformationController.update);
+router.patch('/:doctor_id', DoctorProfileInformationController.updateById);
+router.get('/:doctor_id', DoctorProfileInformationController.getById);
 
 module.exports = router;
