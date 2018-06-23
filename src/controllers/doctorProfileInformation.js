@@ -3,6 +3,7 @@
 const DoctorProfileInformationModel = require('../models/doctorProfileInformation');
 
 const updateById = (req, res) => {
+  console.log(req.body);
 
   if (!Object.prototype.hasOwnProperty.call(req.params, 'doctor_id')) return res.status(400).json({
     error: 'Bad Request',
