@@ -52,8 +52,23 @@ const getById = (req, res) => {
 };
 
 const get = (req, res) => {
-  DoctorProfileInformationModel.find({}).exec(function(error, doctorProfileInformation) {
+
+  console.log(req.query);
+  var query = {};
+  let insurance = req.query.isInsuranceSelected;
+  let language = req.query.isLanguageSelected;
+  let radius = req.query.isRadiusSelected;
+  let rating = req.query.isRatingSelected;
+
+  insurance  != 'noPreference' ? query['services.insuranceType'] = new RegExp(insurance, 'i') : query
+  language   != 'noPreference' ? query['services.languages']     = new RegExp(language, 'i')  : query
+  rating     != 'noPreference' ? query['services.rating']        = parseInt(rating)           : query
+
+  console.log(query);
+
+  DoctorProfileInformationModel.find(query, (error, doctorProfileInformation) => {
     if (!error) {
+      //console.log(doctorProfileInformation);
       res.status(200).json({doctorProfileInformation});
     } else {
       res.status(400).json({
