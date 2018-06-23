@@ -64,11 +64,8 @@ const get = (req, res) => {
   language   != 'noPreference' ? query['services.languages']     = new RegExp(language, 'i')  : query
   rating     != 'noPreference' ? query['services.rating']        = parseInt(rating)           : query
 
-  console.log(query);
-
   DoctorProfileInformationModel.find(query, (error, doctorProfileInformation) => {
     if (!error) {
-      //console.log(doctorProfileInformation);
       res.status(200).json({doctorProfileInformation});
     } else {
       res.status(400).json({
