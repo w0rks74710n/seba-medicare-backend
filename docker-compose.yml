@@ -20,10 +20,3 @@ services:
     image: tianon/true
     volumes:
       - /data/db
-  medicare-webapp:
-    container_name: medicare-webapp
-    restart: always
-    build:
-      context: ../seba-medicare-webapp
-    ports:
-      - "3000:3000"
