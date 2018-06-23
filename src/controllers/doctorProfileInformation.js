@@ -51,7 +51,21 @@ const getById = (req, res) => {
   });
 };
 
+const get = (req, res) => {
+  DoctorProfileInformationModel.find({}).exec(function(error, doctorProfileInformation) {
+    if (!error) {
+      res.status(200).json({doctorProfileInformation});
+    } else {
+      res.status(400).json({
+        error: error.message,
+        message: 'DoctorProfileInformation does not exist'
+      })
+    }
+  });
+}
+
 module.exports = {
   updateById,
-  getById
+  getById,
+  get
 };
