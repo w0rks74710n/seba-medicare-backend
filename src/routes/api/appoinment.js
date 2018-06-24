@@ -7,6 +7,6 @@ const AppoinmentController = require('../../controllers/appoinment');
 
 router.post('/', AppoinmentController.create);
 router.put('/:appoinment_id', AppoinmentController.update);
-router.delete('/:appoinment_id', AppoinmentController.cancel);
+router.delete('/:appoinment_id', AppoinmentController.deleteAppointment);
 
 module.exports = router;

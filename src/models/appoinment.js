@@ -7,13 +7,15 @@ const mongoose = require('mongoose');
 const AppoinmentSchema  = new mongoose.Schema({
   doctor: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   patient: {
     type: String,
-    required: true,
-    unique: true
+    required: true
+  },
+  illness: {
+    type: String,
+    required: true
   },
   date: {
     type: Date,

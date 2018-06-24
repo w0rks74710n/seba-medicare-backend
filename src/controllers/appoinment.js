@@ -85,7 +85,7 @@ const update = (req, res) => {
   });
 };
 
-const cancel = (req, res) => {
+const deleteAppointment = (req, res) => {
   //First check the properties
   if (!Object.prototype.hasOwnProperty.call(req.body, 'doctor')) return res.status(400).json({
     error: 'Bad Request',
@@ -117,5 +117,5 @@ const cancel = (req, res) => {
 module.exports = {
   create,
   update,
-  cancel
+  deleteAppointment
 };
