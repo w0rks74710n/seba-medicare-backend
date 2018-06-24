@@ -16,6 +16,7 @@ const create = (req, res) => {
             socialMedia: {},
             experience: {},
             education: {},
+            services: {},
             images: {}
           });
 

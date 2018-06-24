@@ -7,5 +7,6 @@ const DoctorProfileInformationController = require('../../controllers/doctorProf
 
 router.patch('/:doctor_id', DoctorProfileInformationController.updateById);
 router.get('/:doctor_id', DoctorProfileInformationController.getById);
+router.get('/', DoctorProfileInformationController.get);
 
 module.exports = router;
