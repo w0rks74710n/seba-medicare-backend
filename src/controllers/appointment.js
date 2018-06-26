@@ -107,19 +107,15 @@ const deleteAppointment = (req, res) => {
   });
 
   //Then remove appointment
-  const query = { _id: req.params.appointment_id };
-
-  AppointmentModel.findByIdAndDelete(query, () => {
-    res.status(200).json({
+  AppointmentModel.findByIdAndRemove(req.params.appointment_id).exec()
+    .then(() => res.status(200).json({
       successfullyRemoved: 'Appointment',
-      appointment_id: appointment._id
-    });
-  }).catch(error => {
-      res.status(500).json({
-        error: 'Internal server error',
-        message: error.message
-      })
-  });
+      appointment_id: req.params.appointment_id
+    }))
+    .catch(error => res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    }));
 };
 
 module.exports = {
