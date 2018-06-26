@@ -1,12 +1,13 @@
 "use strict";
 
 /************
-Express is middleware between https requests: POST / GET / PUT / DELETE.. and between controllers
-So, express using routes to forward requests to corresponding controller class that we create for
+ Express is middleware between https requests: POST / GET / PUT / DELETE.. and between controllers
+ So, express using routes to forward requests to corresponding controller class that we create for
  doing CRUD operations.
  Model objects are manipulated by those controllers
  So between DB and controller: we have model classes.
 *************/
+
 const express  = require('express');
 const router   = express.Router();
 

@@ -2,9 +2,9 @@
 
 const mongoose = require('mongoose');
 
-// Define the Appoinment schema
+// Define the Appointment schema
 
-const AppoinmentSchema  = new mongoose.Schema({
+const AppointmentSchema  = new mongoose.Schema({
   doctor: {
     type: String,
     required: true
@@ -15,7 +15,7 @@ const AppoinmentSchema  = new mongoose.Schema({
   },
   illness: {
     type: String,
-    required: true
+    required: false
   },
   date: {
     type: Date,
@@ -23,11 +23,11 @@ const AppoinmentSchema  = new mongoose.Schema({
   }
 });
 
-AppoinmentSchema.set('versionKey', false);
+AppointmentSchema.set('versionKey', false);
 
 // the schema is useless so far
 // we need to create a model using it
-var Appoinment = mongoose.model('Appoinment', AppoinmentSchema);
+var Appointment = mongoose.model('Appointment', AppointmentSchema);
 
 // make this available to our users in our Node applications
-module.exports = Appoinment;
+module.exports = Appointment;
