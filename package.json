@@ -17,9 +17,11 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/ss18sebateam52/seba-medicare-backend#readme",
   "dependencies": {
+    "bcryptjs": "2.4.3",
     "body-parser": "1.18.3",
     "express": "4.16.2",
     "mongoose": "5.1.2",
+    "jsonwebtoken": "8.1.1",
     "helmet": "3.11.0"
   },
   "devDependencies": {
