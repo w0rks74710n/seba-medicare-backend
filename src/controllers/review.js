@@ -47,9 +47,9 @@ const create = (req, res) => {
       message: 'The request parameters must contain a doctor id'
     });
   
-    ReviewModel.find({ id: req.params.doctor }).exec(function(error, reviews) {
+    ReviewModel.find({ doctor: req.params.doctor }).exec(function(error, review) {
       if (!error) {
-        res.status(200).json({reviews});
+        res.status(200).json({review});
       } else {
         res.status(400).json({
           error: error.message,
