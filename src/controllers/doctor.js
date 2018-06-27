@@ -7,7 +7,7 @@ const DoctorModel = require('../models/doctor');
 const DoctorProfileInformationModel = require('../models/doctorProfileInformation');
 
 const register = (req, res) => {
-  if (validateCreateRequest(req, res)) {
+  if (validateRegisterRequest(req, res)) {
     const doctor = Object.assign(req.body, {password: bcrypt.hashSync(req.body.password, 8)});
 
     DoctorModel.create(doctor).then(doctor => {
@@ -45,39 +45,7 @@ const register = (req, res) => {
   }
 };
 
-const login = (req,res) => {
-  if (!Object.prototype.hasOwnProperty.call(req.body, 'password')) return res.status(400).json({
-    error: 'Bad Request',
-    message: 'The request body must contain a password property'
-  });
-
-  if (!Object.prototype.hasOwnProperty.call(req.body, 'username')) return res.status(400).json({
-    error: 'Bad Request',
-    message: 'The request body must contain a username property'
-  });
-
-  DoctorModel.findOne({username: req.body.username}).exec()
-    .then((doctor) => {
-
-      // check if the password is valid
-      const isPasswordValid = bcrypt.compareSync(req.body.password, doctor.password);
-      if (!isPasswordValid) return res.status(401).send({token: null });
-
-      // if user is found and password is valid
-      // create a token
-      const token = jwt.sign({ id: doctor._id, username: doctor.username }, config.JwtSecret, {
-        expiresIn: 86400
-      });
-
-      res.status(200).json({token: token});
-    })
-    .catch(error => res.status(404).json({
-      error: 'User Not Found',
-      message: error.message
-    }));
-};
-
-function validateCreateRequest(req, res) {
+function validateRegisterRequest(req, res) {
   if (!Object.prototype.hasOwnProperty.call(req.body, 'password')) return res.status(400).json({
     error: 'Bad Request',
     message: 'The request body must contain a password property'
@@ -102,6 +70,5 @@ function validateCreateRequest(req, res) {
 }
 
 module.exports = {
-  register,
-  login
+  register
 };

@@ -6,6 +6,7 @@ const router   = express.Router();
 router.use('/doctorProfileInformation', require('./doctorProfileInformation'));
 router.use('/doctor', require('./doctor'));
 router.use('/patient', require('./patient'));
+router.use('/auth', require('./auth'));
 router.use('/appoinment', require('./appoinment'));
 router.use('/', require('./welcome'));
 
