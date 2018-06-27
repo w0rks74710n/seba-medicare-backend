@@ -7,6 +7,7 @@ router.use('/doctorProfileInformation', require('./doctorProfileInformation'));
 router.use('/doctor', require('./doctor'));
 router.use('/patient', require('./patient'));
 router.use('/appoinment', require('./appoinment'));
+router.use('/review', require('./review'));
 router.use('/', require('./welcome'));
 
 router.use(function(err, req, res, next){
