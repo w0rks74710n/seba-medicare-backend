@@ -10,9 +10,9 @@ const create = (req, res) => {
     message: 'The request body must contain a doctor_id property'
   });
 
-  if (!Object.prototype.hasOwnProperty.call(req.body, 'patient_id')) return res.status(400).json({
+  if (!Object.prototype.hasOwnProperty.call(req.body, 'patient')) return res.status(400).json({
     error: 'Bad Request',
-    message: 'The request body must contain a patient_id property'
+    message: 'The request body must contain a patient property'
   });
 
   if (!Object.prototype.hasOwnProperty.call(req.body, 'date')) return res.status(400).json({

@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 const AppointmentSchema  = new mongoose.Schema({
   doctor_id: mongoose.Schema.ObjectId,
-  patient_id: mongoose.Schema.ObjectId,
   patient: {
     type: String,
     required: true
