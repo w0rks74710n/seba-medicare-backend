@@ -12,37 +12,36 @@ const login = (req,res) => {
     error: 'Bad Request',
     message: 'The request body must contain a password property'
   });
-  
+
   if (!Object.prototype.hasOwnProperty.call(req.body, 'username')) return res.status(400).json({
     error: 'Bad Request',
     message: 'The request body must contain a username property'
   });
-  
+
   DoctorModel.findOne({username: req.body.username}).exec().then((doctor) => {
-    if (isValidUserPassword(req, doctor)) { return generateAndSendToken(res, doctor, 'doctor') }
-  })
-  .then(() => {
-      PatientModel.findOne({username: req.body.username}).exec().then((patient) => {
-        if (isValidUserPassword(req, patient)) { generateAndSendToken(res, patient, 'patient') }
-      })
-      .catch(error => res.status(404).json({
-        error: 'User Not Found Patient',
-        message: error.message,
+    return doctor && isValidUserPassword(req, doctor) ?
+          generateAndSetToken(res, doctor, 'doctor') :
+          res.status(404).json({error: 'Wrong Password', message: error.message, token: null});
+  }).catch(() => {
+    PatientModel.findOne({username: req.body.username}).exec().then((patient) => {
+      return patient && isValidUserPassword(req, patient) ?
+             generateAndSetToken(res, patient, 'doctor') :
+             res.status(404).json({error: 'Wrong Password', message: error.message, token: null});
+    }).catch((error) => {
+      return res.status(404).json({
+        error: 'User Not Found',
+        message: error,
         token: null
-      }));
-  })
-  .catch(error => res.status(404).json({
-    error: 'User Not Found Doctor',
-    message: error.message,
-    token: null
-  }));;
+      });
+    });
+  });
 };
 
 function isValidUserPassword(req, user) {
   return bcrypt.compareSync(req.body.password, user.password);
 }
 
-function generateAndSendToken(res, user, userType) {
+function generateAndSetToken(res, user, userType) {
   const token = jwt.sign({ id: user._id, username: user.username }, config.JwtSecret, {
     expiresIn: 86400
   });
