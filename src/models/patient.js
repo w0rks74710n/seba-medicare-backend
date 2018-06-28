@@ -25,7 +25,7 @@ const PatientSchema  = new mongoose.Schema({
   },
   address1: {
     type: String,
-    required: true
+    required: false
   },
   address2: {
     type: String,
@@ -47,5 +47,4 @@ const PatientSchema  = new mongoose.Schema({
 
 PatientSchema.set('versionKey', false);
 
-// Export the Movie model
 module.exports = mongoose.model('Patient', PatientSchema);
