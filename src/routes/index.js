@@ -12,8 +12,8 @@ const helmet     = require('helmet');
 
 const middlewares = require('../middlewares');
 
-router.use(helmet())
-router.use(bodyParser.json())
+router.use(helmet());
+router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(middlewares.allowCrossDomain);
 
