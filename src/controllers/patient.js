@@ -81,14 +81,14 @@ const login = (req,res) => {
     }));
 };
 
-const getUser = (req, res) => {
+const get = (req, res) => {
   //First check the properties
-  if (!Object.prototype.hasOwnProperty.call(req.body, 'patient_id')) return res.status(400).json({
+  if (!Object.prototype.hasOwnProperty.call(req.params, 'patient_id')) return res.status(400).json({
     error: 'Bad Request',
-    message: 'The request body must contain a patient_id property'
+    message: 'The request parameters must contain a patient_id property'
   });
 
-  PatientModel.find({ patient_id: req.body.patient_id }).exec(function(error, patient) {
+  PatientModel.findById(req.params.patient_id).exec(function(error, patient) {
     if (!error) {
       res.status(200).json({patient});
     } else {

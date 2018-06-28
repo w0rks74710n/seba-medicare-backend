@@ -14,7 +14,7 @@ const router   = express.Router();
 const PatientController = require('../../controllers/patient');
 
 router.post('/register', PatientController.register);
-router.get('/:patient_id', PatientController.getUser);
+router.get('/:patient_id', PatientController.get);
 router.delete('/:patient_id', PatientController.deleteUser);
 
 module.exports = router;
