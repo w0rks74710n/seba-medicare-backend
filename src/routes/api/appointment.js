@@ -16,7 +16,7 @@ const router   = express.Router();
 const AppointmentController = require('../../controllers/appointment');
 
 //General HTTP requests: [post, get, put, delete]
-router.post('/', AppointmentController.create);
+router.post('/:doctor_id', AppointmentController.create);
 router.get('/:doctor_id', AppointmentController.get);
 router.patch('/:appointment_id', AppointmentController.update);
 router.delete('/:appointment_id', AppointmentController.deleteAppointment);
