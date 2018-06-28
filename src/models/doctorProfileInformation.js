@@ -32,7 +32,7 @@ const DoctorProfileInformationSchema = new mongoose.Schema({
     university: String
   },
   services: {
-    emergencyAbailable: Boolean,
+    emergencyAvailable: Boolean,
     onlineAppointmentAvailable: Boolean,
     languages: String,
     insuranceType: String,
