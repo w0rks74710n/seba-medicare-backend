@@ -25,7 +25,7 @@ const login = (req,res) => {
   }).catch(() => {
     PatientModel.findOne({username: req.body.username}).exec().then((patient) => {
       return patient && isValidUserPassword(req, patient) ?
-             generateAndSetToken(res, patient, 'doctor') :
+             generateAndSetToken(res, patient, 'patient') :
              res.status(404).json({error: 'Wrong Password', message: error.message, token: null});
     }).catch((error) => {
       return res.status(404).json({
