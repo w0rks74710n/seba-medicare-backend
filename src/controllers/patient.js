@@ -81,7 +81,7 @@ const login = (req,res) => {
     }));
 };
 
-const get = (req, res) => {
+const getPatient = (req, res) => {
   //First check the properties
   if (!Object.prototype.hasOwnProperty.call(req.params, 'patient_id')) return res.status(400).json({
     error: 'Bad Request',
@@ -120,5 +120,7 @@ const deleteUser = (req, res) => {
 };
 
 module.exports = {
-  register
+  register,
+  getPatient,
+  deleteUser
 };
