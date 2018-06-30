@@ -9,6 +9,8 @@ services:
       - "3001:3001"
     links:
       - mongo
+    volumes:
+      - data:/data/uploads
   mongo:
     container_name: mongo
     image: mongo
@@ -20,3 +22,6 @@ services:
     image: tianon/true
     volumes:
       - /data/db
+volumes:
+  data:
+    driver: local

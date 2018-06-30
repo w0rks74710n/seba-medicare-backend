@@ -2,9 +2,8 @@
 
 const express  = require('express');
 const router   = express.Router();
-const path     =  require('path');
 
-const publicImages = express.static(path.join(__dirname, '../../uploads'));
+const publicImages = express.static('/data/uploads');
 
 router.use('/doctorProfileInformation', require('./doctorProfileInformation'));
 router.use('/doctor', require('./doctor'));

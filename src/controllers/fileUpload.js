@@ -5,7 +5,7 @@ const multer = require('multer');
 
 let storage = multer.diskStorage({
   destination: function (req, file, callback) {
-    callback(null, __dirname+'/../uploads')
+    callback(null, '/data/uploads')
   },
   filename: function (req, file, callback) {
     crypto.pseudoRandomBytes(16, function (err, raw) {
