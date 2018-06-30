@@ -3,14 +3,16 @@
 const express  = require('express');
 const router   = express.Router();
 
-//Router uses all the routes -> api files what we created for indicated paths
-//And those router files will handle other paths (appendix paths)
+const publicImages = express.static('/data/uploads');
+
 router.use('/doctorProfileInformation', require('./doctorProfileInformation'));
 router.use('/doctor', require('./doctor'));
 router.use('/patient', require('./patient'));
 router.use('/appointment', require('./appointment'));
 router.use('/auth', require('./auth'));
 router.use('/review', require('./review'));
+router.use('/upload', require('./fileUpload'));
+router.use('/uploads', publicImages);
 router.use('/', require('./welcome'));
 
 router.use(function(err, req, res, next){
