@@ -5,7 +5,6 @@ const router   = express.Router();
 const path     =  require('path');
 
 const publicImages = express.static(path.join(__dirname, '../../uploads'));
-console.log(path.join(__dirname, '../../uploads'));
 
 router.use('/doctorProfileInformation', require('./doctorProfileInformation'));
 router.use('/doctor', require('./doctor'));

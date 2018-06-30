@@ -19,8 +19,8 @@ const uploadSingleFile = (req, res) => {
   
   uploadFile(req, res, (error) => {
     return error ? 
-      res.status(400).json({ errorMessage: 'Error uploading file', error:error}) :
-      res.status(200).json({success: 'The upload was successful'})
+      res.status(400).json({ errorMessage: 'Error uploading file', error: error}) :
+      res.status(200).json({success: 'The upload was successful', fileName: req.file.filename})
   });
 };
 
