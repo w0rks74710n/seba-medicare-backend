@@ -81,6 +81,46 @@ const login = (req,res) => {
     }));
 };
 
+const getPatient = (req, res) => {
+  //First check the properties
+  if (!Object.prototype.hasOwnProperty.call(req.params, 'patient_id')) return res.status(400).json({
+    error: 'Bad Request',
+    message: 'The request parameters must contain a patient_id property'
+  });
+
+  PatientModel.findById(req.params.patient_id).exec(function(error, patient) {
+    if (!error) {
+      res.status(200).json({patient});
+    } else {
+      res.status(400).json({
+        error: error.message,
+        message: 'This patient does not exist! Please verify.'
+      });
+    }
+  });
+};
+
+const deleteUser = (req, res) => {
+  //First check the properties
+  if (!Object.prototype.hasOwnProperty.call(req.params, 'patient_id')) return res.status(400).json({
+    error: 'Bad Request',
+    message: 'The request parameters must contain an patient_id property'
+  });
+
+  //Then remove patient user
+  PatientModel.findByIdAndRemove(req.params.patient_id).exec()
+    .then(() => res.status(200).json({
+      successfullyRemoved: 'Patient',
+      patient_id: req.params.patient_id
+    }))
+    .catch(error => res.status(500).json({
+      error: 'Internal server error',
+      message: error.message
+    }));
+};
+
 module.exports = {
-  register
+  register,
+  getPatient,
+  deleteUser
 };
