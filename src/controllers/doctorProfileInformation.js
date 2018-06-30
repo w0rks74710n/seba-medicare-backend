@@ -57,12 +57,15 @@ const get = (req, res) => {
   var query = {};
   let insurance = req.query.isInsuranceSelected;
   let language = req.query.isLanguageSelected;
-  let radius = req.query.isRadiusSelected;
+  let emergency = req.query.isEmergencySelected;
   let rating = req.query.isRatingSelected;
 
-  insurance  != 'noPreference' ? query['services.insuranceType'] = new RegExp(insurance, 'i') : query
-  language   != 'noPreference' ? query['services.languages']     = new RegExp(language, 'i')  : query
-  rating     != 'noPreference' ? query['services.rating']        = parseInt(rating)           : query
+  insurance  !== 'noPreference' ? query['services.insuranceType']      = new RegExp(insurance, 'i')         : query
+  language   !== 'noPreference' ? query['services.languages']          = new RegExp(language, 'i')          : query
+  emergency  !== 'noPreference' ? query['services.emergencyAbailable'] = (emergency === '1' ? true : false) : query
+  rating     !== 'noPreference' ? query['services.rating']             = parseInt(rating)                   : query
+
+  console.log(query);
 
   DoctorProfileInformationModel.find(query, (error, doctorProfileInformation) => {
     if (!error) {
